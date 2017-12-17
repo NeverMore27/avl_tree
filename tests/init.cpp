@@ -45,7 +45,7 @@ SCENARIO("BST delete non root without children", "[delete]")
 {
 	avl_tree<int, int> tree = { {1, 8}, {18, 4}, {22, 3}, {2,10}, {3, 9}, {12,13}, {7,11}, {1,12} };
 	tree.remove(3);
-	avl_tree<int, int>tr={{3, 9}, {18, 4}, {7,11}, {2,10}, {1,12}, {12,13}, {1, 8}} ;
+	avl_tree<int, int>tr = { { 3, 9 },{ 18, 4 },{7, 11 } ,{ 1, 8 },{ 12,13 }, { 2,10 },{ 1,12 }};
 	REQUIRE(tree == tr);
 }
 SCENARIO("BST delete non root with one child", "[delete]")
