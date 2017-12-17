@@ -76,7 +76,7 @@ public:
 template<typename Ty, typename T, class Compare >
 void avl_tree<Ty, T, Compare>::create_node(node<Ty, T> *& cur, Ty const & k, T const & value_)
 {
-	cur = new node<Ty>();
+	cur = new node<Ty, T>();
 	cur->key = k;
 	cur->value = value_;
 	cur->left = nullptr;
@@ -232,7 +232,7 @@ template<class Ty, class T, class Compare>
 bool avl_tree<Ty, T, Compare>::isEmpty()
 {
 	node <Ty, T>* root1 = nullptr;
-	return isEqual(tree_root, root1);
+	return isEqual(root, root1);
 };
 
 template<class Ty, class T, class Compare>
