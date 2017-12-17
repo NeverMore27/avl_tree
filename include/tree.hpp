@@ -1,7 +1,5 @@
 #include <iostream>
 #include <utility>
-
-
 template<typename Ty, typename T>
 struct node
 {
@@ -45,7 +43,7 @@ private:
 	node<Ty, T> * balance(node<Ty, T> *);
 
 	///////////ins///////////
-	node<Ty, T> * insert(node<Ty, T>*, const Ty&, const T&);
+	node<Ty, T> * insert(node<Ty, T>*, const T&, const Ty&);
 
 	//////////remove
 	node<Ty, T> * findmin(node<Ty, T> *);
@@ -56,19 +54,18 @@ private:
 	bool isEqual(node<Ty, T>* root2, const node<Ty, T>* root1);
 	////for constr///
 	void swap(avl_tree<Ty, T, Compare> & other);
-
+	
 public:
 	avl_tree();
 	avl_tree(std::initializer_list<std::pair<Ty, T>> list);
 	avl_tree(avl_tree<Ty, T, Compare> const &);
 	avl_tree(avl_tree<Ty, T, Compare> &&);
 	~avl_tree();
-	void insert(const Ty&, const T&);
+	void insert(const T&, const Ty&);
 	void remove(const Ty&);
 	node<Ty, T> * search(const T&) const;
 	bool operator ==(const avl_tree& other);
-	bool isEmpty ();
-
+	bool isEmpty();
 };
 
 /////copy////
@@ -285,7 +282,7 @@ node<Ty, T>* avl_tree<Ty, T, Compare>::rotateleft(node<Ty, T>* q)
 
 /////////////insert////////
 template<class Ty, class T, class Compare>
-node<Ty, T>* avl_tree<Ty, T, Compare>::insert(node<Ty, T>* Node, const Ty &k, const T &value_)
+node<Ty, T>* avl_tree<Ty, T, Compare>::insert(node<Ty, T>* Node, const T &value_, const Ty &k)
 {
 	if (Node == NULL)
 	{
@@ -300,21 +297,21 @@ node<Ty, T>* avl_tree<Ty, T, Compare>::insert(node<Ty, T>* Node, const Ty &k, co
 	}
 	else if ((*comp_)(k, Node->key))
 	{
-		Node->left = insert(Node->left, k, value_);
+		Node->left = insert(Node->left, value_, k);
 		Node = balance(Node);
 	}
-	else if (((*comp_)(Node->key, k)) || ((!(*comp_)(k, Node->key)) && (!(*comp_)(Node->key, k))))
+	else if (((*comp_)(Node->key, k)) ) 
 	{
-		Node->right = insert(Node->right, k, value_);
+		Node->right = insert(Node->right,  value_, k);
 		Node = balance(Node);
 	}
 	return Node;
 };
 
 template<class Ty, class T, class Compare>
-void  avl_tree<Ty, T, Compare>::insert(const Ty &k, const T &value)
+void  avl_tree<Ty, T, Compare>::insert(const T &value, const Ty& k)
 {
-	root = insert(root, k, value);
+	root = insert(root, value, k);
 	++count_;
 };
 
