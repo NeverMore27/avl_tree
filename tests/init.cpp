@@ -26,3 +26,10 @@ SCENARIO("BST delete root with one element", "[delete]")
 	tree.remove(8);
 	REQUIRE(tree.isEmpty());
 }
+SCENARIO("BST delete root without child", "[delete]")
+{
+	avl_tree<int, int> tree = { {2,8}, {5, 4}, {5, 3} };
+	tree.Remove(8);
+	avl_tree<int, int> tr ={ {5, 4}, {5, 3}};
+	REQUIRE(tree ==tr);
+}
