@@ -67,6 +67,7 @@ public:
 	void remove(const Ty&);
 	node<Ty, T> * search(const T&) const;
 	bool operator ==(const avl_tree& other);
+	bool isEmpty ();
 
 };
 
@@ -225,6 +226,13 @@ template<class Ty, class T, class Compare>
 bool avl_tree<Ty, T, Compare>::isEqual(node<Ty, T>* root2, const node<Ty, T>* root1)
 {
 	return (root2&&root1 ? root2->key == root1->key&& root2->value == root1->value&&isEqual(root2->left, root1->left) && isEqual(root2->right, root1->right) : !root2 && !root1);
+};
+
+template<class Ty, class T, class Compare>
+bool avl_tree<Ty, T, Compare>::isEmpty()
+{
+	node_st<T, keyT>* root1 = nullptr;
+	return isEqual(tree_root, root1);
 };
 
 template<class Ty, class T, class Compare>
