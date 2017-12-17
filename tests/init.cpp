@@ -26,10 +26,38 @@ SCENARIO("BST delete root with one element", "[delete]")
 	tree.remove(8);
 	REQUIRE(tree.isEmpty());
 }
-SCENARIO("BST delete root without child", "[delete]")
+SCENARIO("BST delete non  without child", "[delete]")
 {
 	avl_tree<int, int> tree = { {2,8}, {5, 4}, {5, 3} };
 	tree.Remove(8);
 	avl_tree<int, int> tr ={ {5, 4}, {5, 3}};
 	REQUIRE(tree ==tr);
+}
+SCENARIO("BST delete root with two children", "[delete]")
+{
+	avl_tree<int, int> tree = { {1, 8}, {18, 4}, {22, 3}, {2,10}, {3, 9}, {12,13}, {7,11}, {1,12} };
+	tree.Remove(4);
+	avl_tree<int, int>tr={ {3, 9}, {1, 8},  {7,11}, {22, 3},{2,10}, {12,13}, {1,12} };
+	REQUIRE(tree ==tr );
+}
+SCENARIO("BST delete root with two children", "[delete]")
+{
+	avl_tree<int, int> tree = { {1, 8}, {18, 4}, {22, 3}, {2,10}, {3, 9}, {12,13}, {7,11}, {1,12} };
+	tree.Remove(4);
+	avl_tree<int, int>tr={ {3, 9}, {1, 8},  {7,11}, {22, 3},{2,10}, {12,13}, {1,12} };
+	REQUIRE(tree ==tr );
+}
+SCENARIO("BST delete non root without children", "[delete]")
+{
+	avl_tree<int, int> tree = { {1, 8}, {18, 4}, {22, 3}, {2,10}, {3, 9}, {12,13}, {7,11}, {1,12} };
+	tree.Remove(3);
+	avl_tree<int, int>tr={{3, 9}, {18, 4}, {7,11}, {2,10}, {1,12}, {12,13}, {1, 8}} ;
+	REQUIRE(tree == tr);
+}
+SCENARIO("BST delete non root with one child", "[delete]")
+{
+	avl_tree<int, int> tree = { {1, 8}, {18, 4}, {22, 3}, {2,10}, {3, 9}, {12,13}, {7,11}, {1,12} };
+	tree.Remove(12);
+	avl_tree<int, int> tr ={{3, 9}, {18, 4}, {7,11}, {2,10}, {18, 4}, {12,13}, {1, 8}, {22, 3}};
+	REQUIRE(tree == tr);
 }
