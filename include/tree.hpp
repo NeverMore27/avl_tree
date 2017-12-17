@@ -231,7 +231,7 @@ bool avl_tree<Ty, T, Compare>::isEqual(node<Ty, T>* root2, const node<Ty, T>* ro
 template<class Ty, class T, class Compare>
 bool avl_tree<Ty, T, Compare>::isEmpty()
 {
-	node_st<T, keyT>* root1 = nullptr;
+	node <Ty, T>* root1 = nullptr;
 	return isEqual(tree_root, root1);
 };
 
