@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.3)
 
-include("cmake/HunterGate.cmake")
-HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.19.123.tar.gz"
-    SHA1 "6187cc772ea74903e4386a43f5ce7f862de0a6b3"
-)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+option(BUILD_EXAMPLES "Build examples" OFF)
+option(BUILD_TESTS "Build tests" OFF)
 
 project(avl_tree)
 set(AVL_TREE_VERSION_MAJOR 0)
