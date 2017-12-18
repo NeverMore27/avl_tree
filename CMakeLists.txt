@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.3)
 
 include("cmake/HunterGate.cmake")
 HunterGate(
@@ -6,17 +6,23 @@ HunterGate(
     SHA1 "57d07480686f82ddc916a5980b4f2a18e5954c2b"
 )
 
-project(stack)
-set(CMAKE_CXX_STANDARD 17)
+project(avl_tree)
+set(AVL_TREE_VERSION_MAJOR 0)
+set(AVL_TREE_VERSION_MINOR 1)
+set(AVL_TREE_VERSION_PATCH 0)
+set(AVL_TREE_VERSION_TWEAK 0)
+set(AVL_TREE_VERSION ${AVL_TREE_VERSION_MAJOR}.${AVL_TREE_VERSION_MINOR}.${AVL_TREE_VERSION_PATCH}.${AVL_TREE_VERSION_TWEAK})
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(BUILD_TESTS "Build tests" OFF)
 option(BUILD_EXAMPLES "Build Examples" OFF)
 
 add_library(${PROJECT_NAME} INTERFACE)
-target_sources(${PROJECT_NAME} INTERFACE "${PROJECT_SOURCE_DIR}/include/tree.hpp")
-
-target_include_directories(${PROJECT_NAME} INTERFACE "${PROJECT_SOURCE_DIR}/include")
+target_include_directories(${PROJECT_NAME} INTERFACE 
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>  
+    $<INSTALL_INTERFACE:include>
+)
 
 if(BUILD_TESTS)
   hunter_add_package(Catch)
@@ -44,3 +50,14 @@ if(BUILD_EXAMPLES)
                 )
     endforeach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
 endif()
+
+install(TARGETS avl_tree
+    EXPORT avl_tree-config
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+)
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/ DESTINATION include)
+install(EXPORT avl_tree-config DESTINATION cmake)
+
+include(CPackConfig.cmake)
