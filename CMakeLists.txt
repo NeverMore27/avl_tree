@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 option(BUILD_EXAMPLES "Build examples" OFF)
 option(BUILD_TESTS "Build tests" OFF)
 
-project(vector)
+project(avl_tree)
 set(AVL_TREE_VERSION_MAJOR 0)
 set(AVL_TREE_VERSION_MINOR 1)
 set(AVL_TREE_VERSION_PATCH 0)
@@ -15,7 +15,7 @@ set(AVL_TREE_VERSION
 ${AVL_TREE_VERSION_MAJOR}.${AVL_TREE_VERSION_MINOR}.${AVL_TREE_VERSION_PATCH}.${AVL_TREE_VERSION_TWEAK})
 set(AVL_TREE_VERSION_STRING "v${AVL_TREE_VERSION}")
 
-add_library(vector ${CMAKE_CURRENT_SOURCE_DIR}/sources/avl_tree.cpp)
+add_library(avl_tree ${CMAKE_CURRENT_SOURCE_DIR}/sources/avl_tree.cpp)
 
 
 target_include_directories(vector PUBLIC
