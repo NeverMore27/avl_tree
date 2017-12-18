@@ -35,7 +35,7 @@ if(BUILD_EXAMPLES)
   endforeach(EXAMPLE_SOURCE ${EXAMPLE_SOURCES})
 endif()
 
-install(TARGETS avltree
+install(TARGETS avl_tree
     EXPORT avl_tree-config
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib
