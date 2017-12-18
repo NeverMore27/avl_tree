@@ -18,7 +18,7 @@ set(AVL_TREE_VERSION_STRING "v${AVL_TREE_VERSION}")
 add_library(avl_tree ${CMAKE_CURRENT_SOURCE_DIR}/sources/avl_tree.cpp)
 
 
-target_include_directories(vector PUBLIC
+target_include_directories(avl_tree PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
